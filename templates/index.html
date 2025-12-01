@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер курения</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#e74c3c">
+    <link rel="icon" type="image/svg+xml" href="/static/icon.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Трекер курения</h1>
+            <button id="settings-btn" class="icon-btn">⚙️</button>
+        </header>
+
+        <!-- Money Stats -->
+        <div class="money-stats">
+            <div class="stat-card">
+                <span class="label">Сегодня</span>
+                <span class="value" id="money-today">0 ₸</span>
+            </div>
+            <div class="stat-card">
+                <span class="label">Месяц</span>
+                <span class="value" id="money-month">0 ₸</span>
+            </div>
+        </div>
+        
+        <!-- Main Counter -->
+        <div class="counter-section">
+            <p>Выкурено сегодня:</p>
+            <div id="today-count" class="count-display">0</div>
+            
+            <div class="controls">
+                <select id="trigger-select">
+                    <option value="Стресс">Стресс</option>
+                    <option value="Скука">Скука</option>
+                    <option value="Еда">После еды</option>
+                    <option value="Кофе">Кофе</option>
+                    <option value="Алкоголь">Алкоголь</option>
+                    <option value="Прочее" selected>Прочее</option>
+                </select>
+                
+                <div class="buttons-row">
+                    <button id="undo-btn" class="undo-button" title="Отменить последнюю">−1</button>
+                    <button id="log-btn" class="log-button">🚬 Я покурил</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="chart-section">
+            <h2>Статистика (7 дней)</h2>
+            <canvas id="weeklyChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Настройки</h2>
+            <div class="form-group">
+                <label for="pack-price">Цена пачки (₸):</label>
+                <input type="number" id="pack-price" value="700">
+            </div>
+            <div class="form-group">
+                <label for="pack-size">Сигарет в пачке:</label>
+                <input type="number" id="pack-size" value="20">
+            </div>
+            <button id="save-settings" class="save-button">Сохранить</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

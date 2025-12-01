@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve Smoking Tracker
+After=network.target
+
+[Service]
+# Replace 'user' with your actual username on the server
+User=user
+# Replace with the actual path to the project
+WorkingDirectory=/home/user/smoking_tracker
+Environment="PATH=/home/user/smoking_tracker/venv/bin"
+ExecStart=/home/user/smoking_tracker/venv/bin/gunicorn --workers 3 --bind unix:smoking_tracker.sock -m 007 app:app
+
+[Install]
+WantedBy=multi-user.target

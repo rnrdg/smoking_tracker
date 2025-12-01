@@ -1,0 +1,12 @@
+services:
+  smoking-tracker:
+    build: .
+    image: smoking-tracker
+    container_name: smoking-tracker
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DB_NAME=/app/data/smoking_tracker.db
